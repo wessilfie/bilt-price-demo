@@ -1,0 +1,5 @@
+{
+  "name": "Bilt Rewards Calculator",
+  "description": "Calculate monthly spend required to unlock Bilt Rewards on rent payments.",
+  "requestFramePermissions": []
+}
