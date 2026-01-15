@@ -1,26 +1,27 @@
-import React from 'react';
-import { ArrowDown, CheckCircle2, Wallet, CreditCard, Home, Info } from 'lucide-react';
+'use client'
+
+import { ArrowDown, CheckCircle2, Wallet, CreditCard, Home, Info } from 'lucide-react'
 
 interface FunnelAnalysisProps {
-  rentAmount: number;
+  rentAmount: number
 }
 
-export const FunnelAnalysis: React.FC<FunnelAnalysisProps> = ({ rentAmount }) => {
+export function FunnelAnalysis({ rentAmount }: FunnelAnalysisProps) {
   // Logic:
   // 1. Fee Needed = Rent * 0.03
   // 2. Spend Needed = Fee Needed / 0.04 (Because earning is 4%)
   // Math simplified: Spend = Rent * (0.03 / 0.04) = Rent * 0.75
 
-  const rent = Math.max(0, rentAmount);
-  const feeNeeded = rent * 0.03;
-  const spendNeeded = feeNeeded / 0.04;
-  const pointsUnlocked = rent; // 1x points
+  const rent = Math.max(0, rentAmount)
+  const feeNeeded = rent * 0.03
+  const spendNeeded = feeNeeded / 0.04
+  const pointsUnlocked = rent // 1x points
 
   const formatCurrency = (val: number) =>
-    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
+    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val)
 
   const formatPoints = (val: number) =>
-    new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 0 }).format(val);
+    new Intl.NumberFormat('en-US', { style: 'decimal', maximumFractionDigits: 0 }).format(val)
 
   return (
     <div className="w-full max-w-4xl mx-auto mt-12 space-y-8">
@@ -35,7 +36,7 @@ export const FunnelAnalysis: React.FC<FunnelAnalysisProps> = ({ rentAmount }) =>
         <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/50 via-purple-500/50 to-emerald-500/50 -translate-x-1/2 hidden md:block" />
 
         <div className="space-y-6 relative">
-            
+
           {/* Step 1: Required Spend */}
           <FunnelStep
             icon={<CreditCard className="w-6 h-6 text-blue-400" />}
@@ -85,7 +86,7 @@ export const FunnelAnalysis: React.FC<FunnelAnalysisProps> = ({ rentAmount }) =>
 
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
         <div className="bg-[#1A1D24] p-6 rounded-2xl border border-white/5">
             <h3 className="text-lg font-medium text-white mb-4">How it works</h3>
@@ -117,35 +118,37 @@ export const FunnelAnalysis: React.FC<FunnelAnalysisProps> = ({ rentAmount }) =>
                <div>
                    <h3 className="text-lg font-medium text-white mb-2">Standard Rent Payment</h3>
                    <p className="text-sm text-gray-400 leading-relaxed">
-                       If you don't want to earn points on rent, you can still connect your bank account and pay rent through Bilt's ACH network for <strong>free ($0 fees)</strong>.
+                       If you don&apos;t want to earn points on rent, you can still connect your bank account and pay rent through Bilt&apos;s ACH network for <strong>free ($0 fees)</strong>.
                    </p>
                </div>
             </div>
         </div>
       </div>
     </div>
-  );
-};
-
-const ArrowDivider = () => (
-  <div className="flex justify-center py-2 relative z-10">
-    <div className="bg-[#0B0E14] p-2 rounded-full border border-white/10">
-      <ArrowDown className="w-5 h-5 text-gray-600" />
-    </div>
-  </div>
-);
-
-interface FunnelStepProps {
-  icon: React.ReactNode;
-  title: string;
-  amount: string;
-  description: string;
-  colorClass: string;
-  glowClass?: string;
-  isFinal?: boolean;
+  )
 }
 
-const FunnelStep: React.FC<FunnelStepProps> = ({ icon, title, amount, description, colorClass, glowClass, isFinal }) => {
+function ArrowDivider() {
+  return (
+    <div className="flex justify-center py-2 relative z-10">
+      <div className="bg-[#0B0E14] p-2 rounded-full border border-white/10">
+        <ArrowDown className="w-5 h-5 text-gray-600" />
+      </div>
+    </div>
+  )
+}
+
+interface FunnelStepProps {
+  icon: React.ReactNode
+  title: string
+  amount: string
+  description: string
+  colorClass: string
+  glowClass?: string
+  isFinal?: boolean
+}
+
+function FunnelStep({ icon, title, amount, description, colorClass, glowClass, isFinal }: FunnelStepProps) {
   return (
     <div className={`relative z-10 bg-[#0F1218] rounded-2xl p-6 md:p-8 border backdrop-blur-sm transition-all duration-500 ${colorClass} ${glowClass} group`}>
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -165,5 +168,5 @@ const FunnelStep: React.FC<FunnelStepProps> = ({ icon, title, amount, descriptio
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

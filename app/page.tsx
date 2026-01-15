@@ -1,28 +1,30 @@
-import React, { useState } from 'react';
-import { Navbar } from './components/Navbar';
-import { FunnelAnalysis } from './components/FunnelAnalysis';
+'use client'
 
-const App: React.FC = () => {
-  const [rent, setRent] = useState<number | ''>(2000);
+import { useState } from 'react'
+import { Navbar } from '@/components/navbar'
+import { FunnelAnalysis } from '@/components/funnel-analysis'
+
+export default function Home() {
+  const [rent, setRent] = useState<number | ''>(2000)
 
   const handleRentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
+    const val = e.target.value
     if (val === '') {
-      setRent('');
-      return;
+      setRent('')
+      return
     }
-    const num = parseInt(val.replace(/[^0-9]/g, ''), 10);
+    const num = parseInt(val.replace(/[^0-9]/g, ''), 10)
     if (!isNaN(num)) {
-      setRent(num);
+      setRent(num)
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-[#050505] text-white selection:bg-blue-500/30 pb-20">
       <Navbar />
-      
+
       <main className="pt-32 px-4 md:px-8 max-w-7xl mx-auto">
-        
+
         {/* Hero / Input Section */}
         <div className="flex flex-col items-center justify-center space-y-8 mb-16">
           <div className="text-center space-y-4 max-w-2xl">
@@ -66,12 +68,10 @@ const App: React.FC = () => {
         {/* Footer info */}
         <div className="mt-24 border-t border-white/5 pt-8 text-center text-gray-600 text-xs">
            <p className="mb-2">This calculator is for estimation purposes only based on the rewards structure provided.</p>
-           <p>© {new Date().getFullYear()} Bilt Technologies, Inc. All Rights Reserved.</p>
+           <p>&copy; {new Date().getFullYear()} Bilt Technologies, Inc. All Rights Reserved.</p>
         </div>
 
       </main>
     </div>
-  );
-};
-
-export default App;
+  )
+}

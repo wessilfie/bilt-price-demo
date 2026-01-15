@@ -1,7 +1,8 @@
-import React from 'react';
-import { User, MapPin, Home, CreditCard, LayoutGrid, Plane } from 'lucide-react';
+'use client'
 
-export const Navbar: React.FC = () => {
+import { User, MapPin, Home, CreditCard, LayoutGrid, Plane } from 'lucide-react'
+
+export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#050505]/90 backdrop-blur-md border-b border-white/5 py-4 px-6 flex items-center justify-between">
       {/* Logo */}
@@ -24,10 +25,10 @@ export const Navbar: React.FC = () => {
         <User size={20} className="text-gray-300" />
       </div>
     </nav>
-  );
-};
+  )
+}
 
-const NavItem: React.FC<{ icon: React.ReactNode; label: string; active?: boolean }> = ({ icon, label, active }) => {
+function NavItem({ icon, label, active }: { icon: React.ReactNode; label: string; active?: boolean }) {
   return (
     <button
       className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
@@ -39,5 +40,5 @@ const NavItem: React.FC<{ icon: React.ReactNode; label: string; active?: boolean
       {icon}
       <span>{label}</span>
     </button>
-  );
-};
+  )
+}
